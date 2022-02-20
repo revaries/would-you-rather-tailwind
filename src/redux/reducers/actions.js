@@ -1,0 +1,6 @@
+export const GET_USERS = "GET_USERS";
+export const GET_LEADERS_LIST = "GET_LEADERS_LIST"
+
+export const GET_ALL_QUESTIONS = "GET_ALL_QUESTIONS";
+export const ADD_QUESTION = "ADD_QUESTION";
+export const ANSWER_QUESTION = "ANSWER_QUESTION";
