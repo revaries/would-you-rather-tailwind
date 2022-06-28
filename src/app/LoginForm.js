@@ -1,44 +1,28 @@
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import reactReduxImage from '../assets/images/reactredux.png';
+import { LOGIN_USER } from '../redux/reducers/actions';
 import authenticationService from '../services/authentication';
 
 const DEFAULT = "default";
 
 function LoginForm() {
+    const users = useSelector(state => state.users);
+    const dispatch = useDispatch();
+    const userKeys = Object.keys(users);
 
     const [loginValue, setLoginValue] = useState(DEFAULT);
-    const values = [
-        {
-            id: "JohnDoe",
-            name: "John Doe"
-        },
-        {
-            id: "TylerSoemthing",
-            name: "Tyler Something"
-        },
-        {
-            id: "testingTesting",
-            name: "testing Testing"
-        },
-        {
-            id: "RevanthPenugonda",
-            name: "Revanth Penugonda"
-        },
-        {
-            id: "RevanthPenugonda",
-            name: "Revanth Penugonda"
-        },
-        {
-            id: "FromMap",
-            name: "From Map"
-        }
-    ]
 
     function handleSubmit() {
         if (loginValue === DEFAULT) {
             return alert("Please select a account to Login");
         }
+        console.log("Login Value: ", loginValue);
         authenticationService.login(loginValue);
+        dispatch({
+            type: LOGIN_USER,
+            payload: loginValue
+        });
     }
 
     return (
@@ -58,12 +42,7 @@ function LoginForm() {
                     className="block appearance-none w-full bg-white border border-indigo-200 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
                     <option value="default">Select Account to Login</option>
                     {
-                        values.map(eachValue => 
-                            <option
-                            value={eachValue.id}>
-                            {eachValue.name}
-                            </option>
-                        )
+                        userKeys.map(key => <option key={key} value={key}>{users[key].name}</option>)
                     }
                 </select>
                 <input type="submit" value="submit" onClick={handleSubmit} className="bg-indigo-500 text-center text-white px-5 py-3 w-full rounded" />

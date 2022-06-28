@@ -1,32 +1,14 @@
-import ProfilePicture from './ProfilePicture';
-import FeedScoreCard from './FeedScoreCard';
-
+import { useSelector } from 'react-redux';
+import LeaderBlock from './LeaderBlock';
 
 function LeaderBoard() {
-
+    const users = useSelector(state => state.users);
+    const usersSorted = Object.values(users).sort((a, b) => 
+        (b.questions.length + Object.keys(b.answers).length) - (a.questions.length + Object.keys(a.answers).length));
 
     return (
-        <div className="">
-            {/* List of stuff */}
- 
-            <div className="flex sm:flex-row flex-col p-5 rounded border mx-auto sm:space-x-28">
-                <ProfilePicture className="my-auto flex-none"></ProfilePicture>
-                <div className="my-auto flex-grow space-y-8">
-                    <h1 className="text-xl">Revanth Penugonda</h1>
-                    <div className="space-y-3">
-                        <div id="questions-card" className="flex flex-row justify-between">
-                            <p>Unanswered Questions</p>
-                            <p>10</p>
-                        </div>
-                        <hr />
-                        <div id="questions-card" className="flex flex-row justify-between">
-                            <p>Answered Questions</p>
-                            <p>10</p>
-                        </div>
-                    </div>
-                </div>
-                <FeedScoreCard className="my-auto flex-none"></FeedScoreCard>
-            </div>
+        <div className="space-y-4">
+            {usersSorted.map(user => <LeaderBlock key={user.id} user={user} />)}
         </div>
     )
 }

@@ -1,8 +1,16 @@
 import appReducer from "./reducers";
+import createSagaMiddleware from "@redux-saga/core";
 
-const { createStore } = require("redux");
+import { configureStore } from "@reduxjs/toolkit";
+import { watcherSaga } from "./saga";
 
-const store = createStore(appReducer);
+const sagaMiddleware = createSagaMiddleware();
 
+const store = configureStore({
+    reducer: appReducer,
+    middleware: [sagaMiddleware]
+})
+
+sagaMiddleware.run(watcherSaga);
 
 export default store;
