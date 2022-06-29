@@ -8,8 +8,6 @@ function Question({ question, isPollable, isAnswerable }) {
   const { id, author, optionOne, optionTwo } = question;
   const dispatch = useDispatch();
 
-  const state = useSelector((state => state));
-  console.log(state)
   const user = useSelector((state) => state.users[author]);
   const authenticatedUser = useSelector((state) => state.authentication.loggedInUser);
   const totalVotes = optionOne.votes.length + optionTwo.votes.length;
@@ -20,7 +18,6 @@ function Question({ question, isPollable, isAnswerable }) {
       qid: id,
       answer: option
     }
-    console.log("Responded Answer is - payload", payload)
     dispatch({
       type: ANSWER_QUESTION,
       payload

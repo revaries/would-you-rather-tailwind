@@ -10,13 +10,11 @@ function CreateQuestion() {
 
     function handleSubmit(event) {
         event.preventDefault();
-        console.log("I am inside the andleSubmit function");
         const payload  = {
             optionOneText: question1,
             optionTwoText: question2,
             author: author.loggedInUser
         }
-        console.log("This is our Payload for create question -> ", payload);
         dispatch({
             type: CREATE_QUESTION,
             payload

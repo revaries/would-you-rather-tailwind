@@ -5,8 +5,6 @@ export default function AuthenticationReducer(state = {
 }, action) {
     switch (action.type) {
         case LOGIN_USER:
-            console.log("Inside AuthenticationReducer: LOGIN_USER");
-            console.log("action.payload: ", action.payload);
             return { loggedInUser: action.payload };
         case LOGOUT_USER:
             return { loggedInUser: null };

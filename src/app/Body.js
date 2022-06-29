@@ -32,7 +32,6 @@ function Body({isAuthenticated}) {
                                 }
                             </Route>
                             <AuthenticatedRoute path="/">
-                                {console.log("Defaulting")}
                                 <Redirect to="/feed"></Redirect> 
                             </AuthenticatedRoute>
                         </Switch>

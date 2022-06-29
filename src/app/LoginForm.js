@@ -17,7 +17,6 @@ function LoginForm() {
         if (loginValue === DEFAULT) {
             return alert("Please select a account to Login");
         }
-        console.log("Login Value: ", loginValue);
         authenticationService.login(loginValue);
         dispatch({
             type: LOGIN_USER,
