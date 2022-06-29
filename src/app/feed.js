@@ -46,7 +46,7 @@ function Feed() {
             <div className="space-y-4">
                 {/* List of stuff */}
                 {
-                    questionsToDisplay.map(key => <Question key={key} question={questions[key]}></Question>)
+                    questionsToDisplay.map(key => <Question key={key} question={questions[key]} isPollable={feedSelction===UNANSWERED}></Question>)
                 }
             </div>
 
