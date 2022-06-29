@@ -6,10 +6,12 @@ import Question from "./question";
 function Questions() {
     const { question_id } = useParams();
     const requestedQuestion = useSelector((state) => state.questions[question_id])
-    console.log(requestedQuestion)
+    const authenticatedUser = useSelector((state) => state.authentication.loggedInUser);
+    const currentUser = useSelector((state) => state.users[authenticatedUser])
+    
     return (
         <div className="">
-            {requestedQuestion ? <Question question={requestedQuestion}/> : <div />}
+            {requestedQuestion ? <Question question={requestedQuestion} isAnswerable={!currentUser.answers[question_id]}/> : <div />}
         </div>
     )
 }

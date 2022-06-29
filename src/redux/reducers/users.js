@@ -1,4 +1,4 @@
-import { SET_USERS, ADD_QUESTION_TO_USER } from "./actions";
+import { SET_USERS, ADD_QUESTION_TO_USER, ADD_ANSWERED_QUESTION_TO_THE_USER } from "./actions";
 
 export default function UsersReducer(state = {}, action) {
     switch (action.type) {
@@ -13,6 +13,18 @@ export default function UsersReducer(state = {}, action) {
                 }
             }
             return state;
+        case ADD_ANSWERED_QUESTION_TO_THE_USER:
+            state = {
+                ...state,
+                [action.payload.authedUser]: {
+                  ...state[action.payload.authedUser],
+                  answers: {
+                    ...state[action.payload.authedUser].answers,
+                    [action.payload.qid]: action.payload.answer
+                  }
+                }
+              }
+              return state;
         default:
             return state;
     }
