@@ -15,9 +15,11 @@ function Feed() {
     
     if(Object.keys(questions).length > 0) {
         const usersAnsweredQuestions = Object.keys(users[signedInUser]?.answers);
-        const questionKeys = Object.keys(questions);
+        console.log("Questions -> ", questions);
+        let questionKeys = Object.keys(questions);
+        questionKeys = questionKeys.sort((a, b) => questions[b].timestamp - questions[a].timestamp);
         questionsToDisplay = feedSelction === UNANSWERED 
-        ? questionKeys.filter(questionKey => !usersAnsweredQuestions.includes(questionKey)) 
+        ? questionKeys.filter(questionKey => !usersAnsweredQuestions.includes(questionKey))
         : questionKeys.filter(questionKey => usersAnsweredQuestions.includes(questionKey));
     }
 
