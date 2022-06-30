@@ -16,7 +16,7 @@ function Body({isAuthenticated}) {
                             <AuthenticatedRoute path="/feed">
                                 <Feed></Feed>
                             </AuthenticatedRoute>
-                            <AuthenticatedRoute path="/newQuestion">
+                            <AuthenticatedRoute path="/add">
                                 <CreateQuestion></CreateQuestion>
                             </AuthenticatedRoute>
                             <AuthenticatedRoute path="/leaderBoard">
